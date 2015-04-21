@@ -1,0 +1,68 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+<title>Green Express</title>
+<link rel="icon" href="images/favicon.png" type="image/x-icon" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="fonts/stylesheet.css" />
+</head>
+
+<body class="general_page">
+	<section class="fixed-wrap">
+        <header><a href="account_management.html" class="user_acc"><img src="images/icon_acc_user.png" /></a><div class="title_page"><h1>Specials</h1></div>
+            <a href="javascript:logout();" id="logoutbtn" class="user_logout"><i class="fa fa-power-off"></i></a>
+        </header>
+        <section class="search_bar">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+        </section>
+    </section>
+    <section class="container">
+        <div class="wrapper-items">
+        <!-- items place here -->
+        </div>
+    </section>
+    <nav class="menus">
+        <div class="active"><a href="specials.html" id="menu1">specials</a></div>
+        <div><a href="javascript:selected_product(1);" id="menu2">fruits</a></div>
+        <div><a href="javascript:selected_product(2);" id="menu3">veg</a></div>
+        <div><a href="order_cart_delivery.html"><div id="bublecart" class="bubbletip" ><span id="cartnum">0</span></div><img src="images/icon_cart.png" style="width:17px;" /></a></div>
+        <div><a href="pending_order.html"><div id="bublepending" class="bubbletip" ><span id="pendnum">0</span></div><span id="menu4">pending order</span></a></div>
+        <div><a href="past_orders.html" id="menu5">past orders</a></div>
+    </nav>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/validator.js"></script>
+<script type="text/javascript" src="js/custom-scripts.js"></script>
+<script>
+  $(document).ready(function() {
+    /* load specials */
+    $.getJSON( base_url + "/restapi/productsapi/get_special_products/format/json", function( data ) {
+         var n = data.length;
+         var i;
+
+         for(i=0;i<n;i++){
+               //alert(data[i].name);
+               $('.wrapper-items').append('<div class="wrapper-box box-item"><img src="'+data[i].image+'" class="img-responsive"/><div class="detail-item"><p>'+data[i].name+'</p><div class="price"><span class="round-white-flat"><strike>$'+data[i].price+'/'+data[i].unit+'</strike></span><span class="round-green-flat">$'+data[i].special_price+'/'+data[i].unit+'</span></div></div></div>');
+         }
+
+    });
+    
+    /* end oad specials */
+
+  });
+  </script>
+</body>
+</html>

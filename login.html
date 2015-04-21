@@ -1,0 +1,205 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+<title>Green Express</title>
+<link rel="icon" href="images/favicon.png" type="image/x-icon" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="fonts/stylesheet.css" />
+<!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>-->
+<script type="text/javascript" src="js/lang.js"></script>
+<script type="text/javascript">
+       // alert(lang[1].name);
+</script>
+<script type="text/javascript" charset="utf-8">
+  /*var initDB = 'on';
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady() {
+  setInterval(function () {
+        checkConnection();
+  }, 1000);
+    }
+  
+  function checkConnection() {
+    var networkState = navigator.connection.type;
+    
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'none';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'none';
+    
+    if(states[networkState] === 'none'){
+      if (localStorage.mode != 'offline'){
+        alert('Offline Mode');
+      }
+      localStorage.mode='offline';
+    }
+    else{
+      if (localStorage.mode == 'offline' || localStorage.mode == undefined){
+        alert('Online Mode');
+      }
+      localStorage.mode='online';
+      if(initDB === 'on'){
+        initDatabase();
+        initDB = 'off';
+      }
+    }
+  }*/
+
+    </script>
+</head>
+
+<body class="forms_page">
+    <header class="fixed-wrap"><div class="title_page"><h1>Login</h1></div></header>
+    <section class="container">
+    	<div class="row logo_form">
+        	<img src="images/logo_form.png" class="img-responsive" />
+        </div>
+        <div class="row forms">
+        	<form id="login_form" data-toggle="validator" role="form">
+            	<div class="form-group">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" data-match-error="Email is invalid" required />
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password" data-match-error="Password is required" required />
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="row remember">
+                	<div class="col-xs-6 padright0 textleft">
+                    	<label><input type="checkbox" id="rememberme" /> Remember me</label>
+                    </div>
+                    <div class="col-xs-6 padleft0 textright">
+                    	<a href="#"><i class="fa fa-question-circle"></i> Forgot Password?</a>
+                    </div>
+                </div>
+                <div class="buttons">
+                	<a href="javascript:void(0);" class="btn-glass btn-yellow" id="sub-login" >Log In</a>
+                    <a href="account_request.html" class="btn-glass btn-green">request for an account</a>                
+                </div>
+                <div class="remember padding0 text-center"><span>Having problems logging in? Please call <i class="fa fa-phone"></i> 61234667</span></div>
+
+                <div id="notif_modal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="notif_title"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="text-center">
+                                  <span class="smile"><i class="fa fa-smile-o"></i></span>
+                                    <p id="notif_text"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <footer class="terms_footer">
+    	<div id="terms_slider" class="carousel slide" data-ride="carousel" data-interval="false">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <div class="carousel-caption">
+                Please note that a special business hours arrangement will be made for our shop during the Chinese New year period. For detailed information, please visit our shop page. Thank you for your continuous support.
+              </div>
+            </div>
+            <div class="item">
+              <div class="carousel-caption">
+                Lorem ipsum dolor sit amet amadeus doloro
+              </div>
+            </div>
+          </div>
+        
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#terms_slider" role="button" data-slide="prev">
+            <i class="fa fa-arrow-left"></i>
+          </a>
+          <a class="right carousel-control" href="#terms_slider" role="button" data-slide="next">
+            <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+    </footer>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/validator.js"></script>
+<script type="text/javascript" src="js/custom-scripts.js"></script>
+<script>
+  $(document).ready(function() {
+
+
+  $('#sub-login').click( function(e) {
+    e.preventDefault();
+
+if($('#email').val()!='' && $('#passwd').val()!=''){
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: base_url + "/restapi/customersapi/login/format/json",
+        data: $('#login_form').serialize(),
+        success: function(data){
+          
+        if(data.status == 1){
+            if($('#rememberme').is(':checked')){   
+                localStorage.remember = 1;
+            }else{
+                localStorage.remember = 0;
+            }
+            localStorage.userid = data.id;
+            localStorage.name = data.name;
+            localStorage.company = data.company;
+            localStorage.address = data.address;
+            localStorage.billing = data.billing_address;
+            localStorage.phone = data.phone;
+            localStorage.officephone = data.officephone;
+            localStorage.email = data.email;
+            localStorage.branch = data.branch;
+            //alert(localStorage.name);
+            window.location=('specials.html');
+        } else {
+            $('#notif_modal').modal();      
+            $('#notif_title').html('Login Failed');      
+            $('#notif_text').html('<span style="color:#ff0000;">Email and password doesn\'t match.</span>');
+            $('.smile').hide();
+        }
+               },
+        error: function(xhr, textStatus, error){
+            $('#notif_modal').modal();      
+            $('#notif_title').html('Login Failed');      
+            $('#notif_text').html('<span style="color:#ff0000;">Error, please contact to support@greenexpress.com</span>');
+            $('.smile').hide();
+               }
+      });
+}else{
+
+            $('#notif_modal').modal();      
+            $('#notif_title').html('Login Failed');      
+            $('#notif_text').html('<span style="color:#ff0000;">Email and password must be filled.</span>');
+            $('.smile').hide();
+
+}
+
+    });
+
+
+
+  });
+  </script>
+</body>
+</html>

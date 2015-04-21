@@ -1,0 +1,180 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+<title>Green Express</title>
+<link rel="icon" href="images/favicon.png" type="image/x-icon" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="fonts/stylesheet.css" />
+</head>
+
+<body class="general_page">
+	<section class="fixed-wrap">
+        <header><a href="account_management.html" class="user_acc"><img src="images/icon_acc_user.png" /></a><div class="title_page"><h1>Search Results</h1></div>
+            <a href="javascript:logout();" class="user_logout"><i class="fa fa-power-off"></i></a>
+        </header>
+        <section class="search_bar">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+        </section>
+    </section>
+    <section class="container" id="fruits_page">
+        <div class="row paddown50">
+        <!-- fruit place -->
+        </div>
+        <div id="qty_modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">select quantity</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <div><span style="color:#ff0000;display:none" id="errormsg">Quantity must be filled.</span></div>
+                            <form id='qtyform' method='POST' action='#'>
+                                <a id='qtyminus' field='qtyfield' class='btn-glass-min btn-gold'>-</a>
+                                <span><input type='text' id='qtyfield' value='0' class='qty' /> Pcs</span>
+                                <a id='qtyplus' field='qtyfield' class='btn-glass-min btn-gold'>+</a>
+                                <p><i>Note : 1 Carton = 10 pcs</i></p>
+                                <div align="center">
+                                	<a href="javascript:void(0)" id="addtocart" class="btn-glass-min btn-green" aria-hidden="true">add</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="delivery_modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">delivery or pick &amp; go?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <p>Please choose one.</p>
+                            <div class="buttons"><a href="order_cart_delivery.html" class="btn-glass-min btn-green" onclick="">delivery</a>
+                            <a href="order_cart_pick_go.html" class="btn-glass-min btn-green" onclick="">pick &amp; go</a></div>
+                            <p><i>Pick & Go - Self-collection at [Please apply client full warehouse address when you have it]</i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <nav class="menus">
+        <div><a href="specials.html">specials</a></div>
+        <div class="active"><a href="javascript:selected_product(1);">fruits</a></div>
+        <div><a href="javascript:selected_product(2);">veg</a></div>
+        <div><a href="order_cart_delivery.html"><div id="bublecart" class="bubbletip" ><span id="cartnum">0</span></div><img src="images/icon_cart.png" style="width:17px;" /></a></div>
+        <div><a href="pending_order.html"><div id="bublepending" class="bubbletip" ><span id="pendnum">0</span></div>pending order</a></div>
+        <div><a href="past_orders.html">past orders</a></div>
+    </nav>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/validator.js"></script>
+<script type="text/javascript" src="js/custom-scripts.js"></script>
+<script>
+  $(document).ready(function() {
+    
+    /* load specials */
+    $.getJSON( base_url + "/restapi/productsapi/productlist/category/1/lang/1/limit/100/page/1/format/json", function( data ) {
+         var n = data.length;
+         var i;
+         
+         $('.paddown50').append('<div class="col-xs-6"><div class="wrapper-box box-item box-item-small"><a href="cart.html"><img src="images/img_add_item.jpg" class="img-responsive"/></a><div class="detail-item"><p>Quick Cart</p><a href="javascript:void(0)" class="btn-glass-min btn-green" >add to order</a></div></div></div>');
+         var qindicator='';
+         for(i=0;i<n;i++){
+               //alert(data[i].name);
+               if(data[i].qindicator==1){
+                     qindicator = 'badge-low';
+               }else if(data[i].qindicator==2){
+                     qindicator = 'badge-high';
+               }
+               //<span class="badge-star"></span>
+               $('.paddown50').append('<div class="col-xs-6"><div class="wrapper-box box-item box-item-small"><div class="item-badges"><span class="badge-rank '+qindicator+'"></span></div><img src="'+data[i].image+'" class="img-responsive"/><div class="detail-item"><p>'+data[i].name+'</p><a href="javascript:void(0)" onclick="prepared_cart('+data[i].id+',\''+addslashes(data[i].name)+'\',\''+addslashes(data[i].unit)+'\')" class="btn-glass-min btn-green" >add to order</a></div></div></div>');
+         }
+
+    });
+    
+    /* end oad specials */
+
+
+    $('#addtocart').click( function(e) {
+         e.preventDefault();
+         var qty = $('#qtyfield').val();
+         
+         if(qty>0){
+              $('#errormsg').hide();
+              add_to_cart(qty);
+              $('#qty_modal').modal('hide');
+              $('#delivery_modal').modal();
+         }else{
+              $('#errormsg').show(); 
+         }         
+    
+    });
+
+
+  });
+
+  var arr_cart = new Array();
+  var arr_i = 0;
+  if (localStorage.cart != undefined){
+    arr_cart = $.parseJSON(localStorage.cart);
+    arr_i = arr_cart.length;
+  }
+  var userid = localStorage.userid;
+
+  function prepared_cart(prodid, prodname, unit){
+
+           localStorage.currentprodid = prodid;
+           localStorage.currentprodname = prodname;
+           localStorage.currentprodunit = unit;
+
+           $('#qty_modal').modal();
+    
+  }
+
+  function add_to_cart(qty){
+
+    var now = 0;
+    $.each(arr_cart, function(i) {
+    if(arr_cart[i] != null ){
+      if(localStorage.currentprodid == arr_cart[i][0] ){
+      now = parseInt(arr_cart[i][3]);
+      arr_cart[i][3] = now + parseInt(qty);
+      //alert(arr_cart[i][3]);
+      }
+    }
+    });
+    
+    if(now == 0){
+     arr_cart[arr_i] = new Array();
+     arr_cart[arr_i][0] = localStorage.currentprodid;
+     arr_cart[arr_i][1] = localStorage.currentprodname;
+     arr_cart[arr_i][2] = localStorage.currentprodunit;
+     arr_cart[arr_i][3] = qty;
+     arr_i++;
+     }
+     localStorage.cart = JSON.stringify(arr_cart);
+    
+  } 
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+<title>Green Express</title>
+<link rel="icon" href="images/favicon.png" type="image/x-icon" />
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="fonts/stylesheet.css" />
+</head>
+
+<body class="general_page">
+	<section class="fixed-wrap">
+        <header><a href="account_management.html" class="user_acc"><img src="images/icon_acc_user.png" /></a><div class="title_page"><h1>Past Order - Details</h1></div>
+            <a href="javascript:logout();" class="user_logout"><i class="fa fa-power-off"></i></a>
+        </header>
+        <section class="search_bar">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+        </section>
+    </section>
+    <section class="container quotation_page">
+        <div class="order_cart_box">
+        	<table class="table">
+            	<tr>
+                	<th>Item</th>
+                    <th>Qty</th>
+                    <th>Qty Avail.</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                	<td>Asparagus</td>
+                    <td>5kg</td>
+                    <td>5kg</td>
+                    <td>$9.50</td>
+                </tr>
+                <tr>
+                	<td>Apples</td>
+                    <td>8kg</td>
+                    <td>8kg</td>
+                    <td>$10.00</td>
+                </tr>
+                <tr>
+                	<td>Spinach</td>
+                    <td>10kg</td>
+                    <td>10kg</td>
+                    <td>$10.00</td>
+                </tr>
+                <tr>
+                	<td>Watermelon</td>
+                    <td>10pcs</td>
+                    <td>10pcs</td>
+                    <td>$9.00</td>
+                </tr>
+                <tr>
+                	<td>Tomatoes</td>
+                    <td>6kg</td>
+                    <td>6kg</td>
+                    <td>$19.00</td>
+                </tr>
+                <tr>
+                	<td>Chinese Spinach</td>
+                    <td>6kg</td>
+                    <td>6kg</td>
+                    <td>$20.00</td>
+                </tr>
+                <tr>
+                	<td>Lotus Root</td>
+                    <td>2pcs</td>
+                    <td>2pcs</td>
+                    <td>$2.50</td>
+                </tr>
+            </table>
+            <form id="quotation_pickgo_form" class="forms" data-toggle="validator" role="form">
+            	<div class="row">
+                	<div class="col-xs-6"><label class="padding0">Delivery Date: 20/4/2015</label></div>
+                    <div class="col-xs-6"><label class="padding0">Delivery Time: 8am-9am</label></div>
+                </div>
+            	<div class="form-group mardown10">
+                    <textarea class="form-control no-round" placeholder="Remarks (by admin)" data-match-error="This field is required" required></textarea>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <table class="table_line">
+                	<tr><td width="100%">Subtotal</td><td>$80.00</td></tr>
+                    <tr><td width="100%">Delivery Fee</td><td>$20.00</td></tr>
+                    <tr><td width="100%">GST 7%</td><td>$5.60</td></tr>
+                </table>
+                <div class="grand_total">Grand Total $105.60</div>
+            </form>
+        </div>
+    </section>
+    <nav class="menus">
+        <div><a href="specials.html">specials</a></div>
+        <div><a href="javascript:selected_product(1);">fruits</a></div>
+        <div><a href="javascript:selected_product(2);">veg</a></div>
+        <div><a href="order_cart_delivery.html"><div id="bublecart" class="bubbletip" ><span id="cartnum">0</span></div><img src="images/icon_cart.png" style="width:17px;" /></a></div>
+        <div><a href="pending_order.html"><div id="bublepending" class="bubbletip" ><span id="pendnum">0</span></div>pending order</a></div>
+        <div class="active"><a href="past_orders.html">past orders</a></div>
+    </nav>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/validator.js"></script>
+<script type="text/javascript" src="js/custom-scripts.js"></script>
+<script>$('#collection_date').datepicker();</script>
+<script>
+jQuery(document).ready(function(){
+    $('#qtyplus').click(function(e){
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#qtyfield').val());
+        if (!isNaN(currentVal)) {
+            $('#qtyfield').val(currentVal + 1);
+        } else {
+            $('#qtyfield').val(0);
+        }
+    });
+    
+    $("#qtyminus").click(function(e) {
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#qtyfield').val());
+        if (!isNaN(currentVal) && currentVal > 0) {
+            $('#qtyfield').val(currentVal - 1);
+        } else {
+            $('#qtyfield').val(0);
+        }
+    });
+});
+
+</script>
+</body>
+</html>

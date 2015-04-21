@@ -1,0 +1,397 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+<title>Green Express</title>
+<link rel="icon" href="images/favicon.png" type="image/x-icon" />
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="fonts/stylesheet.css" />
+</head>
+
+<body class="general_page">
+	<section class="fixed-wrap">
+        <header><a href="account_management.html" class="user_acc"><img src="images/icon_acc_user.png" /></a><div class="title_page"><h1>Delivery - Order Summary</h1></div>
+            <a href="javascript:logout();" class="user_logout"><i class="fa fa-power-off"></i></a>
+        </header>
+        <section class="search_bar">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+        </section>
+    </section>
+    <section class="container">
+        <div class="order_cart_box">
+        <form id="orders_form" class="forms" data-toggle="validator" role="form">
+        	<table class="table" id="itemslist">            	
+                
+            </table>            
+            	<div class="form-group mardown10">
+                    <input type="text" id="remark" name="remark" class="form-control no-round" placeholder="Remarks" data-match-error="This field is required" required />
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-5"><label>Delivery Option</label></div>
+                    <div class="col-xs-7 padleft0">
+                        <div class="form-group">
+                            <select class="form-control" id="delivery_type" name="delivery_type">
+                                <option value="">-- Select Option --</option>
+                                <option value="1">Delivery</option>
+                                <option value="2">Pick n Go</option>
+                            </select>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row option1" style="display:none;">
+                	<div class="col-xs-5"><label>Delivery Date</label></div>
+                    <div class="col-xs-7 padleft0">
+                    	<div class="form-group">
+                            <input type="text" id="collection_date" name="collection_date" class="form-control collection_date" data-date-format="mm/dd/yyyy" data-match-error="This field is required" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row option2" style="display:none;">
+                    <div class="col-xs-5"><label>Collection Date</label></div>
+                    <div class="col-xs-7 padleft0">
+                        <div class="form-group">
+                            <input type="text" id="collection_date2" class="form-control collection_date2" data-date-format="mm/dd/yyyy" data-match-error="This field is required" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row option2" style="display:none;">
+                    <div class="col-xs-5"><label>Collection Time</label></div>
+                    <div class="col-xs-7 padleft0">
+                        <div class="form-group">
+                            <input type="text" id="collection_time" class="form-control" data-match-error="This field is required" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row buttons margin0">
+                	<a href="javascript:void(0)" class="btn-glass-min btn-green pull-left">add items</a>
+                    <a href="#confirmation_popup" class="btn-glass-min btn-green pull-right" data-toggle="modal">submit order</a>
+                </div>
+                <div class="row margin0">
+                    <ul>
+                        <li>Orders after 2pm will be delivered on the next working day.</li>
+						<li>All deliveries based on pre-arranged instructions</li>
+						<li>Free delivery for orders above $100 or a fee of $20 will be levied on each delivery.</li>
+                    </ul>
+                </div>
+                
+                <div id="confirmation_popup" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">confirmation</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="text-center">
+                                    <p>Are you sure to submit you order?</p>
+                                    <div class="buttons"><a href="javascript:void(0)" class="btn-glass-min btn-green marright5" data-toggle="modal" data-dismiss="modal" aria-hidden="true">no</a>
+                                    <a href="javascript:void(0)" id="submitbtn" class="btn-glass-min btn-green marleft5" data-toggle="modal" data-dismiss="modal" aria-hidden="true">yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="notif_modal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="notif_title">confirmation</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="text-center">
+                                	<span class="smile"><i class="fa fa-thumbs-up"></i></span>
+                                    <p id="notif_text"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>           
+                <input type="hidden" name="customer_id" id="customer_id" value="" >
+                <input type="hidden" name="customer_name" id="customer_name" value="" >
+                <input type="hidden" name="lang_id" id="lang_id" value="1" >
+            </form>
+        </div>
+    </section>
+    <nav class="menus">
+        <div><a href="specials.html">specials</a></div>
+        <div><a href="javascript:selected_product(1);">fruits</a></div>
+        <div><a href="javascript:selected_product(2);">veg</a></div>
+        <div class="active"><a href="order_cart_delivery.html"><div id="bublecart" class="bubbletip" ><span id="cartnum">0</span></div><img src="images/icon_cart.png" style="width:17px;" /></a></div>
+        <div><a href="pending_order.html"><div id="bublepending" class="bubbletip" ><span id="pendnum">0</span></div>pending order</a></div>
+        <div><a href="past_orders.html">past orders</a></div>
+    </nav>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/jquery.ui.timepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/validator.js"></script>
+<script type="text/javascript" src="js/custom-scripts.js"></script>
+<script>$('.collection_date').datepicker();</script>
+<script>$('.collection_date2').datepicker();</script>
+<script>$('#collection_time').timepicker();</script>
+<script>
+jQuery(document).ready(function(){
+    $('#qtyplus').click(function(e){
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#qtyfield').val());
+        if (!isNaN(currentVal)) {
+            $('#qtyfield').val(currentVal + 1);
+        } else {
+            $('#qtyfield').val(0);
+        }
+    });
+    
+    $("#qtyminus").click(function(e) {
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#qtyfield').val());
+        if (!isNaN(currentVal) && currentVal > 0) {
+            $('#qtyfield').val(currentVal - 1);
+        } else {
+            $('#qtyfield').val(0);
+        }
+    });
+
+    $("#delivery_type").change(function(e) {
+        e.preventDefault();
+        
+        //alert($('#delivery_type').val());
+
+        if($('#delivery_type').val()==1){
+            $('.option1').show();
+            $('.option2').hide();
+        }else if($('#delivery_type').val()==2){
+            $('.option1').hide();
+            $('.option2').show();
+        }else{
+            $('.option1').hide();
+            $('.option2').hide();
+        }
+
+    });
+    
+    function onError(tx, error) {
+         alert(error.message);
+    }
+
+    $('#submitbtn').click( function(e) {
+         e.preventDefault();
+         
+         if($('#delivery_type').val()!=''){
+
+         $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: base_url + "/restapi/ordersapi/datapost/format/json",
+        data: $('#orders_form').serialize(),
+        success: function(data){
+          
+        if(data.status == 1){
+            
+            // insert to local web SQL 
+            /* Status
+            0 = no status
+            1 = pending quotation
+            2 = pending confirmation
+            3 = reject
+            4 = accept and process
+            5 = received
+            6 = changed items
+            */
+            
+            var n = data.length;
+            //var nitems = date.items.length;
+            var i = 0;
+
+
+         var db = openDatabase('greenexpress', '1.0', 'Greenexpress DB', 2 * 1024 * 1024);
+         db.transaction(function (tx) {  
+              
+              tx.executeSql('CREATE TABLE IF NOT EXISTS ORDERS (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, order_id INTEGER NOT NULL, reference_no VARCHAR(300), quotation_no VARCHAR(100), invoice_no VARCHAR(100), customer_id INTEGER NOT NULL,delivery_type char(1) NOT NULL ,delivery_date DATETIME NOT NULL, status char(1) NOT NULL, delivery_cost FLOAT, tax FLOAT, inv_total FLOAT, total FLOAT, admin_note VARCHAR(300), post_date DATETIME NOT NULL)');
+                
+              tx.executeSql("INSERT INTO ORDERS (order_id, reference_no, quotation_no, invoice_no, customer_id, delivery_type, delivery_date, status, delivery_cost, tax, inv_total, total, admin_note, post_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", [data.id, data.reference_no, '-', '-', data.customer_id, data.delivery_type, data.delivery_date, '1', data.delivery_cost, data.tax, data.inv_total, data.total, '-', data.post_date ],
+        function(tx, result) {
+            //alert('added');
+        }, 
+        onError);
+
+               tx.executeSql('CREATE TABLE IF NOT EXISTS ORDERS_ITEMS (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, order_id INTEGER NOT NULL, product_id INTEGER NOT NULL, product_code VARCHAR(128), product_name VARCHAR(300), product_namecin VARCHAR(300),product_unit VARCHAR(50), quantity INT NOT NULL, unit_price FLOAT, tax, total)');
+                
+                var item_tax = 0;
+                var item_total = 0;
+                $.each( data.items, function( key, val ) {
+                     //alert( value.product_name );
+                     item_tax = (val.unit_price*val.quantity) * 0.07;
+                     item_total = (val.unit_price*val.quantity) + item_tax;
+                     tx.executeSql("INSERT INTO ORDERS_ITEMS (order_id, product_id, product_code, product_name, product_namecin, product_unit, quantity, unit_price, tax, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", [data.id, val.product_id, val.product_code, val.product_name, val.product_namecin, val.product_unit, val.quantity, val.unit_price, item_tax, item_total ],
+                    function(tx, result) {
+                      //alert('added');
+                    }, 
+                   onError);
+
+               });
+
+                
+         }); 
+
+         
+              //tx.executeSql('CREATE TABLE IF NOT EXISTS ORDER_ITEMS (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, item_name VARCHAR(100) NOT NULL , total FLOAT NOT NULL)');
+
+
+            // end 
+            $('#remark').val('');
+            $('#collection_date').val('');
+
+            $('#notif_modal').modal();       
+            $('#notif_title').html('success');      
+            $('#notif_text').html('Thank you for your order. We will advise you on the quotation within the next 3 working hours.');
+            $('.smile').show();
+            localStorage.removeItem('cart');
+            localStorage.cartnum = 0;
+
+            if(localStorage.pendnum){
+                 localStorage.pendnum = parseInt(localStorage.pendnum) + 1;
+            }else{
+                 localStorage.pendnum = 1;
+            } 
+            
+            loadpendbubble();
+            $('#itemslist').html('<tr><th>Item</th><th colspan="2">Qty</th></tr>');            
+            //window.location=('specials.html');
+        } else {
+            $('#notif_modal').modal();      
+            $('#notif_title').html('failed');      
+            $('#notif_text').html('<span style="color:#ff0000;">Sorry, order process has been failed.</span>');
+            $('.smile').hide();
+        }
+               },
+        error: function(xhr, textStatus, error){
+         // alert(textStatus);
+               }
+      });
+
+        }else{
+             
+            $('#notif_modal').modal();      
+            $('#notif_title').html('failed');      
+            $('#notif_text').html('<span style="color:#ff0000;">You must select your delivery option.</span>');
+            $('.smile').hide();
+
+        }
+
+         
+    
+    });
+
+});
+
+// select all records and display them
+function showRecords() {
+
+  var db = openDatabase('greenexpress', '1.0', 'Greenexpress DB', 2 * 1024 * 1024);
+
+  db.transaction(function (tx) {
+  tx.executeSql('SELECT * FROM ORDERS', [], function (tx, results) {
+
+    //alert(results);
+   var len = results.rows.length, i;
+   for (i = 0; i < len; i++){
+      //alert(results.rows.item(i).name);
+   }
+ }, null);
+
+});
+
+}
+
+function loaditems(){
+
+    var row;
+    var arr_cart = new Array();
+    var arr_i = 0;
+    var userid = localStorage.userid;
+    var total = 0;
+    if(localStorage.cart != undefined){
+        arr_cart = JSON.parse(localStorage.cart);
+    }   
+
+    row = '<tr><th>Item</th><th colspan="2">Qty</th></tr>';
+
+    for(i=0;i<arr_cart.length;i++){
+        row = row + '<tr><td>'+arr_cart[i][1]+'</td><td><span>'+arr_cart[i][3]+' '+arr_cart[i][2]+'</span></td><td><a onclick="delitem(this, '+i+')"><i class="fa fa-times"></i></a><input type="hidden" name="itemslistarr['+i+']" value="'+arr_cart[i][0]+'#'+arr_cart[i][3]+'" /></td></tr>';
+    }
+    $('#customer_id').val(localStorage.userid);
+    $('#customer_name').val(localStorage.name);
+    $('#itemslist').html(row);
+
+}
+
+
+function delitem(ini, iselect){         
+         
+    var row;
+    var arr_cart = new Array();
+    var arr_i = 0;
+    var userid = localStorage.userid;
+    var total = 0;
+    if(localStorage.cart != undefined){
+        arr_cart = JSON.parse(localStorage.cart);
+    }   
+    
+    var newarr = new Array();
+    var newi = 0;
+
+    for(i=0;i<arr_cart.length;i++){
+        if(i!=iselect){
+          newarr[newi] = new Array();
+          newarr[newi][0] = arr_cart[i][0];
+          newarr[newi][1] = arr_cart[i][1];
+          newarr[newi][2] = arr_cart[i][2];
+          newarr[newi][3] = arr_cart[i][3];
+          newi++;
+        }
+    }
+    
+    localStorage.cart = JSON.stringify(newarr);
+
+    localStorage.cartnum = arr_cart.length-1;
+
+    loadcartbubble();
+
+    $(ini).closest('tr').fadeOut();
+
+}
+
+
+/*var db = openDatabase('greenexpress', '1.0', 'Greenexpress DB', 2 * 1024 * 1024);
+db.transaction(function (tx) {  
+tx.executeSql('DROP TABLE ORDERS');
+});*/
+
+loaditems();
+//showRecords();
+</script>
+</body>
+</html>

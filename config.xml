@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.volgram.spare" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Sparepart Factory</name>
+    <description>
+        Green Express Mobile Apps.
+    </description>
+    <author email="wahyu@wishbone.com.sg" href="http://wishbone.com.sg">
+        Sparepart Team
+    </author>
+    <content src="index.html" />
+	<icon src="assets/img/icon.png" />
+    <access origin="*" />
+</widget>

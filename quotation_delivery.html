@@ -1,0 +1,245 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+<title>Green Express</title>
+<link rel="icon" href="images/favicon.png" type="image/x-icon" />
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="fonts/stylesheet.css" />
+</head>
+
+<body class="general_page">
+	<section class="fixed-wrap">
+        <header><a href="account_management.html" class="user_acc"><img src="images/icon_acc_user.png" /></a><div class="title_page"><h1>Delivery Quotation - <span id="qid"></span></h1></div>
+            <a href="javascript:logout();" class="user_logout"><i class="fa fa-power-off"></i></a>
+        </header>
+        <section class="search_bar">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+        </section>
+    </section>
+    <section class="container quotation_page">
+        <div class="order_cart_box">
+        	<table class="table">            	
+                <tbody id="tablebody">
+                <tr>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Qty Avail.</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>Asparagus</td>
+                    <td>5kg</td>
+                    <td>5kg</td>
+                    <td>$9.50</td>
+                </tr>                
+                </tbody>                
+            </table>
+            <form id="quotation_pickgo_form" class="forms" data-toggle="validator" role="form">
+            	<div class="row">
+                	<div class="col-xs-6"><label class="padding0">Delivery Date: <span id="deliverydate">20/4/2015</span></label></div>
+                    <div class="col-xs-6"><label class="padding0">Delivery Time: <span id="deliverytime">8am-9am</span></label></div>
+                </div>
+            	<div class="form-group mardown10">
+                    <textarea class="form-control no-round" disabled="disabled" id="adminnote" ></textarea>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <table class="table_line">
+                	<tr><td width="100%">Subtotal</td><td>$<span id="subtotal"></span></td></tr>
+                    <tr><td width="100%">Delivery Fee</td><td>$<span id="deliveryfee"></span></td></tr>
+                    <tr><td width="100%">GST 7%</td><td>$<span id="gst"></span></td></tr>
+                </table>
+                <div class="grand_total">Grand Total $<span id="grandtotal"></span></div>
+                <div class="row buttons margin0">
+                	<a href="#accept_popup" class="btn-glass-min btn-green pull-left" data-toggle="modal">accept</a>
+                    <a href="#reject_popup" class="btn-glass-min btn-green pull-right" data-toggle="modal">reject</a>
+                </div>
+                
+                <div id="accept_popup" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">accept</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="text-center">
+                                    <p>Are you sure you want to accept?</p>
+                                    <div class="buttons"><a href="#" class="btn-glass-min btn-green marright5" data-toggle="modal" data-dismiss="modal" aria-hidden="true">no</a>
+                                    <a href="#accepted_popup" class="btn-glass-min btn-green marleft5" data-toggle="modal" data-dismiss="modal" aria-hidden="true">yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="accepted_popup" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">accepted</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="text-center">
+                                	<span class="smile"><i class="fa fa-truck"></i></span>
+                                    <p>Thank you for your confirmation. Your order will be delivered on 18/02/2015. We will contact you for the delivery time.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="reject_popup" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">reject</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="text-center">
+                                    <p>Are you sure you want to reject this order?</p>
+                                    <div class="buttons"><a href="#" class="btn-glass-min btn-green marright5" data-toggle="modal" data-dismiss="modal" aria-hidden="true">no</a>
+                                    <a href="#rejected_popup" class="btn-glass-min btn-green marleft5" data-toggle="modal" data-dismiss="modal" aria-hidden="true">yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="rejected_popup" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">rejected</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="text-center">
+                                	<span class="smile"><img src="images/icon_reject.png" /></span>
+                                    <p>We apologise for any inconveniences caused.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </section>
+    <nav class="menus">
+        <div><a href="specials.html">specials</a></div>
+        <div><a href="javascript:selected_product(1);">fruits</a></div>
+        <div><a href="javascript:selected_product(2);">veg</a></div>
+        <div class="active"><a href="order_cart_delivery.html"><div id="bublecart" class="bubbletip" ><span id="cartnum">0</span></div><img src="images/icon_cart.png" style="width:17px;" /></a></div>
+        <div><a href="pending_order.html"><div id="bublepending" class="bubbletip" ><span id="pendnum">0</span></div>pending order</a></div>
+        <div><a href="past_orders.html">past orders</a></div>
+    </nav>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/validator.js"></script>
+<script type="text/javascript" src="js/custom-scripts.js"></script>
+<script>$('#collection_date').datepicker();</script>
+<script>
+
+function showselectedOrder(order_id, order_no){
+
+        var db = openDatabase('greenexpress', '1.0', 'Greenexpress DB', 2 * 1024 * 1024);
+       
+        var subtotal = 0;
+        var grandtotal = 0;
+
+        db.transaction(function (tx) {
+  tx.executeSql('SELECT * FROM ORDERS_ITEMS WHERE order_id = '+order_id+' ORDER BY id', [], function (tx, results) {
+   
+   var content = '<tr><th>Item</th><th>Qty</th><th>Qty Avail.</th><th>Price</th></tr>';
+   var product_name;
+   var len = results.rows.length, i;
+   $('#tablebody').html('');
+   for (i = 0; i < len; i++){
+      if(localStorage.lang==1){
+         product_name = addslashes(results.rows.item(i).product_name);
+      }else{
+         product_name = addslashes(results.rows.item(i).product_namecin);
+      }
+      //results.rows.item(i).id
+      subtotal = subtotal + (results.rows.item(i).unit_price*results.rows.item(i).quantity);
+      content = content + '<tr><td>'+product_name+'</td><td><span>'+results.rows.item(i).quantity+'kg</span></td><td><span>'+results.rows.item(i).quantity+'kg</span></td><td>$'+(results.rows.item(i).unit_price*results.rows.item(i).quantity)+'</td></tr>'; 
+
+   }
+
+   db.transaction(function (tx) {
+  tx.executeSql('SELECT * FROM ORDERS WHERE order_id = '+order_id, [], function (tx, results) {
+            var delfree = 0;
+            var gst = 0;
+            var grandtotal = 0;
+            if(subtotal < 100) delfree = 20;
+            gst = subtotal * (7/100); 
+            grandtotal = subtotal + delfree + gst;
+            $('#deliverydate').html(results.rows.item(0).delivery_date);
+            $('#subtotal').html(subtotal.toFixed(2));
+            $('#deliveryfee').html(delfree);
+            $('#gst').html(gst.toFixed(2));
+            $('#grandtotal').html(grandtotal.toFixed(2));
+            $('#qid').html(results.rows.item(0).quotation_no);
+            //alert(results.rows.item(0).delivery_date);
+
+ }, null);
+
+});
+
+   $('#tablebody').html(content);
+
+ }, null);
+
+});
+
+}
+
+jQuery(document).ready(function(){
+    $('#qtyplus').click(function(e){
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#qtyfield').val());
+        if (!isNaN(currentVal)) {
+            $('#qtyfield').val(currentVal + 1);
+        } else {
+            $('#qtyfield').val(0);
+        }
+    });
+    
+    $("#qtyminus").click(function(e) {
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#qtyfield').val());
+        if (!isNaN(currentVal) && currentVal > 0) {
+            $('#qtyfield').val(currentVal - 1);
+        } else {
+            $('#qtyfield').val(0);
+        }
+    });
+
+    
+    showselectedOrder(localStorage.selected_pendorder, localStorage.selected_orderno);
+
+});
+
+</script>
+</body>
+</html>
